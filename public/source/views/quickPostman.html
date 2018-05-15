@@ -1,0 +1,42 @@
+<div class="jumbotron text-center">
+    <h1>Quick Postman</h1>
+    <div>
+        <form>
+            <div class="col-md-offset-3 col-md-6 text-left">
+
+                <div class="form-group">
+                    <label for="usr">Route path:</label>
+                    <div class="input-group column-name">
+                        <span class="input-group-addon">api/</span>
+                        <input type="text" class="form-control" ng-model="apiUrl">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Method:</label>
+                    <select class="form-control" id="selectMethod" ng-model="methodType">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Request body:</label>
+                    <div ng-jsoneditor="jsoneditorLoad" options="requestBodyOptions" ng-model="requestBody"></div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Output:</label>
+                    <textarea class="form-control no-resize" rows="10" placeholder="Response data..." ng-model="responseData" ng-readonly="true"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="reset" class="btn" ng-click="reset()">Reset</button>
+                    <button type="submit" class="btn btn-primary pull-right" id="sendRequest" ng-click="sendRequest()">Send Request</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+    <br />
+</div>

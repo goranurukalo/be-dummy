@@ -1,0 +1,190 @@
+<div class="jumbotron">
+    <h1 class="text-center">Documentation Page</h1>
+    <br>
+    <br>
+    <br>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3" id="myScrollSpy">
+                    <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="100">
+                        <li class="active">
+                            <a href="#section-1">Get started</a>
+                        </li>
+
+                        <li>
+                            <a href="#section-2">Routes</a>
+                        </li>
+
+
+                        <li>
+                            <a href="#section-3">Test mock</a>
+                        </li>
+
+
+                        <li>
+                            <a href="#section-4">Use on own website</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-9">
+
+                    <h2 id="section-1">Get started</h2>
+                    <p>
+                        Hi,
+                        <strong>Be dummy</strong> is free app, designed to be easy to prototype mock data for your frontend or even
+                        backend components.</p>
+                    <p>So first thing to do is actually to think what data you want to generate.</p>
+                    <p>Next thing to do is to go to
+                        <a href="/models">Be dummy's Models</a> and start creating your prototypes.</p>
+                    <p>Finally after creating your first model, you would like to see and do all sorts of stuff with your data
+                        right?
+                    </p>
+                    <p>
+                        <strong>Be dummy</strong> app comes with basic type of
+                        <a href="https://www.getpostman.com/">Postman</a> like testing application. In case you don't wanna install 3th party software, you can
+                        go to
+                        <a href="/quick-postman">Quick postman</a> section and use are basic like
+                        <a href="https://www.getpostman.com/">Postman</a> app.
+                    </p>
+                    <p>And thats all you basically need to know to start your journey in creating mock data. </p>
+                    <hr>
+
+
+                    <h2 id="section-2">What is Model</h2>
+                    <p>Basically model is object or row in your database, that represents some kind of record.</p>
+                    <p>
+                        <strong>Example:</strong>
+                        <i>some simple product</i>
+                    </p>
+                    <p>Your simple product should to look something like this</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>product_id</th>
+                                <th>name</th>
+                                <th>description</th>
+                                <th>price</th>
+                                <th>quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Basic product</td>
+                                <td>This is just a basic product</td>
+                                <td>$10</td>
+                                <td>1000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <p>Now we can "take" this data and convert it into model.</p>
+                    <p>First create new Model</p>
+                    <p>We should name it
+                        <strong>Simple product</strong> or however you need or want.
+                    </p>
+                    <p>Then we can just
+                        <strong>drag and drop</strong> types from our right side to middle.</p>
+                    <p>Name them as we shown above, and take types that are similar or same as above represented ones.</p>
+                    <p>Save your
+                        <strong>Model</strong> and thats all. Congrats, now you can use it however you want.</p>
+                    <hr>
+
+                    <h2 id="section-3">Test your models</h2>
+                    <p>First create desired model.</p>
+                    <p>If you have fallowed basics above you should have something like this: </p>
+                    <img src="https://dummyimage.com/600x400/000/fff" alt="Image with just made product model">
+                    <br>
+                    <br>
+                    <br>
+                    <p>Then go to
+                        <a href="/quick-postman">Quick postman</a>
+                        and do something like this.
+                    </p>
+                    <img src="https://dummyimage.com/600x400/000/fff" alt="Image with quick postman get request">
+                    <br>
+                    <br>
+                    <p>Now you need to have fun with it.</p>
+                    <hr>
+
+                    <h2 id="section-4">Code examples</h2>
+                    <p>Code below is just there to show you how to call it from your favorite framework or library.</p>
+                    <pre class="prettyprint">
+                        <code class="language-js">
+                            //
+                            // jQuery
+                            //
+                            $.ajax({
+                                url: '{{websiteRoute}}/api/example',
+                                success: function(response){
+                                  console.log(response)
+                                }
+                            });
+                        </code>
+
+                        <code class="language-js">
+                            //
+                            // React
+                            //
+                            axios.get('{{websiteRoute}}/api/example')
+                                .then(function (response) {
+                                    console.log(response)
+                                })
+                        </code>
+
+                        <code class="language-js">
+                            //
+                            // vue js
+                            //
+                            this.$http.get('{{websiteRoute}}/api/example')
+                                .then((response) {
+                                    console.log(response)
+                                })
+                        </code>
+
+                        <code class="language-js">
+                            //
+                            // angular js
+                            //
+                            $http.get('{{websiteRoute}}/api/example')
+                                .then((response) {
+                                    console.log(response)
+                                })
+                        </code>
+
+                        <code class="language-js">
+                            //
+                            // Angular (2+)
+                            //
+                            ...
+                            import { HttpClient } from '@angular/common/http';
+                            
+                            ...
+                            
+                            constructor(private http: HttpClient){
+                            }
+                            
+                            ...
+                            
+                            this.http
+                                .get('{{websiteRoute}}/api/example')
+                                .subscribe(response => 
+                                {
+                                    console.log(response);
+                                });
+                        </code>
+                    </pre>
+                    <script>
+                        $("document").ready(function () {
+                            PR.prettyPrint();
+                        });
+                    </script>
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

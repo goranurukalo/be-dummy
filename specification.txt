@@ -1,0 +1,192 @@
+	-- frontend
+		-pravljenje modela
+		-pregled/edit modela 
+		-brisanje modela 
+		
+		-api rute zadatog modela (ovo se kreira na osnovu frontend-a)
+			-napravi sekciju gde korisniku izbacuje sve moguce opcije koje moze da pozove preko postman-a
+			
+		-kada dodje na sajt, vidi da li ima nesto u cooki-u
+			--ako ima ucitaj to i nastavi dalje
+			--samo postavi default
+			(ovo je za prikaz modula itd.)
+		--cookie traje 30min
+		
+		-moze se ucitati model i onda se pravi i cookie i na backendu se generisu stvari
+		
+		
+	-- backend
+		-napravi u dinamickim rutama za get/post/put/delete itd...
+		-generisanje tokena(randomstring + danasnji datum koji je unique)
+			-ime fajla je isti kao i token usera i preko njega se zapravo cita fajl
+		-generisanje fajla (*.json file)
+			-prilikom generisanja tokena
+			-unosa modela (provera validnosti fajla)
+		-citanje fajlova tj napraviti svoj database engine za te fajlove
+		-generisanje podataka fajla
+		
+		//postoje dva fajla, jedan je model a drugi je database
+		//database u sekciji settings ima i da li je fajl model menjan
+		//model se update-uje samo onda kada se taj fajl zahteva jer u suprotnom se mozda nikad nece koristiti
+
+
+
+
+
+
+
+// TODO 
+
+	-- napravi da ova ostala sranja sem ovog prvog sa patternom bude iz configuracije
+	++ backend: kada dobije model , vuce podatke iz linkova i onda pravi file
+	++ tako da put delete itd radi normalno
+
+
+
+	++ napravi search da bude za data types
+
+
+	++ ako ima modela dodati tab koji pokazuje kako se koristi api 
+
+
+	++ napravi pored menia status api-a 
+		//ako api nema tabele onda pokazi kao narandjasto
+		//ako ima item-a onda zeleno
+		// ako nesto ne valjda onda stavi crveno
+
+		//za sve od gore navedenog u title staviti neko objasnjenje za boju
+
+
+	++ napravi table da budu accordian i da se uz pomoc neke funcije izracunavaju moguce route itd
+
+	-- napravi novi documentation 
+		// znaci neki primeri kako poceti
+		// kako se prave route
+		// kako se koriste route 
+		// neki primeri kodova (react, angular, vue, jquery)
+		// mozda neki pomocni kod
+
+
+	-- da se napravi ono kao dokumentacija pogledati ovaj link 
+		//http://petstore.swagger.io/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+w3school
+
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var input;
+
+$.get("https://my.api.mockaroo.com/user.json?key=07e2cd70",	function(data, status){input = data; console.log("go do it");});
+
+function fnc(){
+	var value = document.getElementById("int").value;
+	var result = input.map(function (obj) {
+              return obj[value];
+            });
+            output = result.join("<br>");        														document.getElementById("demo").innerHTML = output;
+}
+
+</script>
+<input type="text" id="int">
+<button onclick="fnc()">get data</button>
+
+
+<p id="demo"></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+=============================
+	TODO
+=============================
+
+- kada se menja model da se obnove podaci tj samo da se dodaju/remove-uju oni koji su menjani
+	// mora da se brise samo red po red, tj da se filtrira
+	// jer je moguce da je user nesto menjao pa da mu ne diramo te menjane
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================
+REACT-sandbox
+=============================================================================
+
+import React from "react";
+import { render } from "react-dom";
+import faker from "faker";
+
+const styles = {
+  fontFamily: "sans-serif",
+  textAlign: "left"
+};
+
+var listOfData = [];
+for (let i = 0; i < 100; i++) {
+  var randomData = faker.fake(
+    "{{address.streetAddress}} - {{address.city}}"
+  );
+  //var randomData = faker.fake("{{name.firstName}} {{name.lastName}}");
+  if (listOfData.indexOf(randomData) === -1) listOfData.push(randomData);
+}
+
+const App = () => (
+  <div style={styles}>
+    <div>Hi, testing faker.</div>
+    <br />
+    <div>non repeated names count: {listOfData.length}</div>
+    <br />
+    <br />
+    {listOfData.map(x => {
+      return <div>{x}</div>;
+    })}
+  </div>
+);
+
+render(<App />, document.getElementById("root"));
+-------------------------------------------------------
+
+
+- first_name
+- last_name
+- email
+- gender
+- language

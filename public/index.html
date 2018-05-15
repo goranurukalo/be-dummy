@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="beDummy">
+
+<head>
+	<title>Be Dummy</title>
+	<meta charset="utf-8">
+	<base href="/" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Goran Urukalo">
+	<link rel="icon" href="https://image.flaticon.com/icons/png/512/456/456161.png">
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css" />
+	<link rel="stylesheet" href="https://cdn.rawgit.com/josdejong/jsoneditor/master/dist/jsoneditor.min.css" />
+	<link rel="stylesheet" href="assets/style.css" />
+
+	<!-- lib -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.7.1/angular-local-storage.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.rawgit.com/fent/randexp.js/dfb1923c/build/randexp.min.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+	<script src="https://cdn.rawgit.com/josdejong/jsoneditor/master/dist/jsoneditor.min.js"></script>
+	<script src="https://cdn.rawgit.com/angular-tools/ng-jsoneditor/master/ng-jsoneditor.min.js"></script>
+
+	<script src="assets/index.js"></script>
+	<script src="assets/source/js/dataTypes.js"></script>
+	<script src="assets/source/controllers/homeController.js"></script>
+	<script src="assets/source/controllers/mainController.js"></script>
+	<script src="assets/source/controllers/modelController.js"></script>
+	<script src="assets/source/controllers/documentationController.js"></script>
+	<script src="assets/source/controllers/quickPostmanController.js"></script>
+
+</head>
+
+<body ng-controller="mainController" data-spy="scroll" data-target="#myScrollSpy">
+	<!-- ALERT SYSTEM -->
+	<div id="alerts" class="col-md-offset-2 col-md-8"></div>
+
+	<!-- navigation -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Be Dummy</a>
+			</div>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="/">
+						<i class="fa fa-home"></i> Home
+					</a>
+				</li>
+				<li>
+					<a href="/models">
+						<i class="fa fa-database"></i> Models
+					</a>
+				</li>
+				<li>
+					<a href="/documentation">
+						<i class="fa fa-file-o"></i> Documentation
+					</a>
+				</li>
+				<li>
+					<a href="/quick-postman">
+						<i class="fa fa-wpforms"></i> Quick Postman
+					</a>
+				</li>
+
+				<li class="more-right">
+					<a href="javascript:void(0)" title="{{apiTitle}}">
+						<i class="fa fa-globe" ng-class="{down: apiState === 0, preparing: apiState === 1, ready: apiState === 2}"></i> API
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div id="main">
+
+		<!-- angular templates -->
+		<!-- this is where content will be injected -->
+		<div ng-view></div>
+
+	</div>
+
+
+	<!-- footer -->
+	<footer class="section footer">
+		<div class="footer-bottom text-center">
+			<div class="container">
+				<div class="col-md-12">
+					<p>© All Rights Reserved
+						<br> Made with
+						<i class="fa fa-heart pulse"></i> by
+						<a target="_blank" rel="nofollow" href="https://goranurukalo.github.io/">Goran Urukalo</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script>
+		window.successAlert = function (text) {
+			$("#alerts").append('<div class="alert alert-success autoclose"><a class="close" data-dismiss="alert">&times;</a><span>' + text + '</span></div>');
+
+			$('.alert.autoclose').each(function () {
+				$(this).show().delay(2000).slideUp("fast", function () {
+					$(this).remove();
+				});
+			});
+		}
+
+		window.errorAlert = function (text) {
+			$("#alerts").append('<div class="alert alert-danger"><a class="close" data-dismiss="alert">&times;</a><span>' + text + '</span></div>');
+		}
+
+		window.infoAlert = function (text) {
+			$("#alerts").append('<div class="alert alert-info"><a class="close" data-dismiss="alert">&times;</a><span>' + text + '</span></div>');
+		}
+	</script>
+</body>
+
+</html>

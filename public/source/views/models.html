@@ -1,0 +1,539 @@
+<div class="jumbotron">
+    <h1 class="text-center">Models</h1>
+
+    <ul class="nav nav-tabs" id="modelsNav">
+        <li class="active">
+            <a data-toggle="tab" onclick="return false;" href="#modelList">Your models</a>
+        </li>
+        <li>
+            <a data-toggle="tab" onclick="return false;" href="#importexport">Import/Export your models</a>
+        </li>
+
+        <div>
+            <a data-toggle="tab" class="btn no-pedding pull-right add-model" ng-click="removeModelIndex()" onclick="return false;" href="#editModel">
+                <div class="btn btn-primary btn-circle custom-plus">
+                    <i class="fa fa-plus"></i>
+                </div>
+                Add model
+            </a>
+        </div>
+    </ul>
+
+    <div class="tab-content container">
+        <div id="modelList" class="tab-pane fade in active">
+            <h2>List</h2>
+            <br/>
+            <br/>
+            <!-- show in some way of table or something like that  -->
+
+            <!-- it got models to show -->
+            <div ng-if="models.length > 0" class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Model name</th>
+                            <th>Model path</th>
+                            <th>Settings</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, item) in models">
+                        <tr>
+                            <td>{{key+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.routePath}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="#editModel" ng-click="setModelIndex(key)" data-toggle="tab" onclick="$('#modelsNav .active').removeClass('active'); return false;"
+                                        class="btn btn-default">Edit</a>
+                                    <button ng-click="setItemIdToDelete(key)" type="button" class="btn btn-default" data-toggle="modal" data-target="#delete-confirmation">Delete</button>
+                                </div>
+                            </td>
+                            <td data-toggle="collapse" data-target="#expand{{key}}" class="clickable collapsed">
+                                <span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="accordian-body">
+                                <div id="expand{{key}}" class="collapse">
+
+                                    <!-- POST -->
+                                    <div class="opblock opblock-post is-open">
+                                        <div class="opblock-summary opblock-summary-post clickable collapsed" data-toggle="collapse" data-target="#post{{key}}">
+                                            <span class="opblock-summary-method">POST</span>
+                                            <span class="opblock-summary-path">
+                                                <a class="nostyle" href="javascript:void(0)">
+                                                    <span>/{{item.routePath}}</span>
+                                                </a>
+                                            </span>
+                                            <div class="opblock-summary-description">Create user</div>
+                                        </div>
+
+                                        <div style="height: auto; margin: 0px; padding: 0px;" id="post{{key}}" class="collapse">
+                                            <div class="opblock-body">
+                                                <div class="opblock-section">
+                                                    <div class="opblock-section-header">
+                                                        <div class="tab-header">
+                                                            <h4 class="opblock-title">Parameters</h4>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <th class="col col_header parameters-col_name">Name</th>
+                                                                    <th class="col col_header parameters-col_description">Description</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="col col-md-4 parameters-col_name">
+                                                                        <div class="parameter__name required">
+                                                                            body
+                                                                            <span style="color: red;">&nbsp;*</span>
+                                                                        </div>
+                                                                        <div class="parameter__type">
+                                                                        </div>
+                                                                        <div class="parameter__deprecated"></div>
+                                                                        <div class="parameter__in">
+                                                                            (body)
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="col parameters-col_description">
+                                                                        <div class="markdown">
+                                                                            <p>Created user object</p>
+                                                                        </div>
+                                                                        <div>
+
+                                                                            <div>
+                                                                                <div class="body-param">
+                                                                                    <pre class="prettyprint"><code class="language-js">{{generateCode('post', key)}}</code></pre>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div class="execute-wrapper"></div>
+                                                <div class="responses-wrapper">
+                                                    <div class="opblock-section-header">
+                                                        <h4 class="opblock-title">Responses</h4>
+                                                    </div>
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <td class="col col_header response-col_status">Code</td>
+                                                                    <td class="col col_header response-col_description">Description</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="response">
+                                                                    <td class="col col-md-4 response-col_status">default</td>
+                                                                    <td class="col response-col_description">
+                                                                        <div class="response-col_description__inner">
+                                                                            <div class="markdown">
+                                                                                <p>successful operation</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /POST -->
+
+
+                                    <!-- GET -->
+                                    <div class="opblock opblock-get is-open">
+                                        <div class="opblock-summary opblock-summary-get clickable collapsed" data-toggle="collapse" data-target="#get{{key}}">
+                                            <span class="opblock-summary-method">GET</span>
+                                            <span class="opblock-summary-path">
+                                                <!--<a class="nostyle" href="api/{{item.routePath}}/all" target="_blank">-->
+                                                <a class="nostyle" href="javascript:void(0)">
+                                                    <span>/{{item.routePath}}/{_id}</span>
+                                                </a>
+                                            </span>
+                                            <div class="opblock-summary-description">Get user by user name</div>
+                                            <a class="nostyle redirect-icon pull-right" href="api/{{item.routePath}}/all" target="_blank">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </div>
+
+                                        <div style="height: auto; margin: 0px; padding: 0px;" id="get{{key}}" class="collapse">
+                                            <div class="opblock-body">
+                                                <div class="opblock-section">
+                                                    <div class="opblock-section-header">
+                                                        <div class="tab-header">
+                                                            <h4 class="opblock-title">Parameters</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-description-wrapper">
+                                                        <p>No parameters</p>
+                                                    </div>
+                                                </div>
+                                                <div class="execute-wrapper"></div>
+                                                <div class="responses-wrapper">
+                                                    <div class="opblock-section-header">
+                                                        <h4 class="opblock-title">Responses</h4>
+                                                    </div>
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <td class="col col_header response-col_status">Code</td>
+                                                                    <td class="col col_header response-col_description">Description</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="response">
+                                                                    <td class="col col-md-4 response-col_status">default</td>
+                                                                    <td class="col response-col_description">
+                                                                        <div class="response-col_description__inner">
+                                                                            <div class="markdown">
+                                                                                <p>successful operation</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /GET -->
+
+
+                                    <!-- PATCH -->
+                                    <div class="opblock opblock-patch is-open">
+                                        <div class="opblock-summary opblock-summary-patch clickable collapsed" data-toggle="collapse" data-target="#patch{{key}}">
+                                            <span class="opblock-summary-method">PATCH</span>
+                                            <span class="opblock-summary-path">
+                                                <a class="nostyle" href="javascript:void(0)">
+                                                    <span>/{{item.routePath}}/{_id}</span>
+                                                </a>
+                                            </span>
+                                            <div class="opblock-summary-description">Update user</div>
+                                        </div>
+                                        <div style="height: auto; margin: 0px; padding: 0px;" id="patch{{key}}" class="collapse">
+                                            <div class="opblock-body">
+                                                <div class="opblock-section">
+                                                    <div class="opblock-section-header">
+                                                        <div class="tab-header">
+                                                            <h4 class="opblock-title">Parameters</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <th class="col col_header parameters-col_name">Name</th>
+                                                                    <th class="col col_header parameters-col_description">Description</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="col col-md-4 parameters-col_name">
+                                                                        <div class="parameter__name required">
+                                                                            body
+                                                                            <span style="color: red;">&nbsp;*</span>
+                                                                        </div>
+                                                                        <div class="parameter__type">
+                                                                        </div>
+                                                                        <div class="parameter__deprecated"></div>
+                                                                        <div class="parameter__in">
+                                                                            (body)
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="col parameters-col_description">
+                                                                        <div class="markdown">
+                                                                            <p>Created user object</p>
+                                                                        </div>
+                                                                        <div>
+
+                                                                            <div>
+                                                                                <div class="body-param">
+                                                                                    <pre class="prettyprint"><code class="language-js">{{generateCode('patch', key)}}</code></pre>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="execute-wrapper"></div>
+                                                <div class="responses-wrapper">
+                                                    <div class="opblock-section-header">
+                                                        <h4 class="opblock-title">Responses</h4>
+                                                    </div>
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <td class="col col_header response-col_status">Code</td>
+                                                                    <td class="col col_header response-col_description">Description</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="response">
+                                                                    <td class="col col-md-4 response-col_status">default</td>
+                                                                    <td class="col response-col_description">
+                                                                        <div class="response-col_description__inner">
+                                                                            <div class="markdown">
+                                                                                <p>successful operation</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /PATCH -->
+
+
+                                    <!-- DELETE -->
+                                    <div class="opblock opblock-delete is-open">
+                                        <div class="opblock-summary opblock-summary-delete clickable collapsed" data-toggle="collapse" data-target="#delete{{key}}">
+                                            <span class="opblock-summary-method">DELETE</span>
+                                            <span class="opblock-summary-path">
+                                                <a class="nostyle" href="javascript:void(0)">
+                                                    <span>/{{item.routePath}}/{_id}</span>
+                                                </a>
+                                            </span>
+                                            <div class="opblock-summary-description">Delete user</div>
+                                        </div>
+                                        <div style="height: auto; margin: 0px; padding: 0px;" id="delete{{key}}" class="collapse">
+                                            <div class="opblock-body">
+                                                <div class="opblock-section">
+                                                    <div class="opblock-section-header">
+                                                        <div class="tab-header">
+                                                            <h4 class="opblock-title">Parameters</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-description-wrapper">
+                                                        <p>No parameters</p>
+                                                    </div>
+                                                </div>
+                                                <div class="execute-wrapper"></div>
+                                                <div class="responses-wrapper">
+                                                    <div class="opblock-section-header">
+                                                        <h4 class="opblock-title">Responses</h4>
+                                                    </div>
+                                                    <div class="responses-inner">
+                                                        <table class="responses-table">
+                                                            <thead>
+                                                                <tr class="responses-header">
+                                                                    <td class="col col_header response-col_status">Code</td>
+                                                                    <td class="col col_header response-col_description">Description</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="response">
+                                                                    <td class="col col-md-4 response-col_status">default</td>
+                                                                    <td class="col response-col_description">
+                                                                        <div class="response-col_description__inner">
+                                                                            <div class="markdown">
+                                                                                <p>successful operation</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /DELETE -->
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script>
+                    $("document").ready(function () {
+                        PR.prettyPrint();
+                    });
+                </script>
+            </div>
+            <!-- no models to show -->
+            <p ng-show="models.length == 0">User don't have models.</p>
+        </div>
+        <div id="importexport" class="tab-pane fade">
+
+            <h2>Import or Export models</h2>
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <p>Already have models?</p>
+                    <p>Dont wait import them now!</p>
+                    <div class="form-group">
+                        <label class="btn btn-default">
+                            Browse
+                            <input type="file" hidden custom-on-change="importModels">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <!-- buttons to export models as json file -->
+                    <p>You can download models for your copy of app.</p>
+                    <p>It's easy as one mouse click!</p>
+                    <button type="button" ng-disabled="models.length == 0" ng-click="downloadModels()" class="btn btn-primary btn-lg btn-block">Export models</button>
+                </div>
+            </div>
+
+        </div>
+        <div id="editModel" class="tab-pane fade">
+            <h2>Edit Model</h2>
+            <div class="row">
+
+
+                <form id="required-input" name="requiredInput">
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label for="usr">Model name:</label>
+                            <input type="text" class="form-control" ng-model="editModel.name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usr">Route path:</label>
+                            <div class="input-group column-name">
+                                <span class="input-group-addon">/</span>
+                                <input type="text" class="form-control" ng-model="editModel.routePath" required pattern="[\w_-]+" ng-disabled="editModel.key !== undefined"
+                                    ng-class="{'disabledInputBox': (editModel.key !== undefined) }">
+                            </div>
+                        </div>
+
+                        <button ng-disabled="requiredInput.$invalid" type="button" ng-click="saveModel()" class="btn btn-primary pull-right">Save Modal</button>
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                MODEL
+                                <i class="fa fa-exclamation-triangle pull-right" data-toggle="popover" data-placement="right" data-trigger="hover" title="Warning"
+                                    data-content="Data of '_id' ColumnName will be overridden." style="font-size: 20px;"></i>
+                                <script>
+                                    $('[data-toggle="popover"]').popover(); 
+                                </script>
+                            </div>
+                            <div class="panel-body notextselect" id="userDataModel">
+
+                            </div>
+                            {{initUserDataModel()}}
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <!-- <span>Data types</span>
+                            <input type="text" class="form-control" placeholder="Search types..." id="search_data_types
+                                    " onchange="searchCards(event)"> -->
+
+                            <div class="input-group" id="search_data_types">
+                                <span class="input-group-addon">Data types</span>
+                                <input type="text" class="form-control" placeholder="Search types..." onkeyup="searchCards(event)">
+                            </div>
+                        </div>
+                        <script>
+                            function searchCards(event) {
+                                $("#dataTypes .card").each(function () {
+
+                                    if ($(this).children("span").text().toLowerCase().search($("#search_data_types input").val().toLowerCase()) === -1) {
+                                        $(this).hide();
+                                    } else {
+                                        $(this).show();
+                                    }
+                                });
+                            }
+                        </script>
+                        <form class="panel-body notextselect" id="dataTypes" ng-bind-html="getMemorizeTypes() | trust">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <script>
+                dragula([
+                    document.getElementById('userDataModel'),
+                    document.getElementById('dataTypes')
+                ], {
+                        copy: function (el, source) {
+                            return $(source).prop("id") == "dataTypes";
+                        },
+                        removeOnSpill: true,
+                        invalid: function (el, handle) {
+                            return el.tagName === 'B';
+                        }
+                    })
+                    .on("drop", function (el, source) {
+                        if ($(source).prop("id") == "dataTypes") {
+                            $(el).remove();
+                        } else {
+                            $("#dataTypes")[0].reset();
+                        }
+                    });
+            </script>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="delete-confirmation" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-without-inner-border">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    Are you sure you want to
+                    <b>DELETE</b>
+                    this model?
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer modal-without-inner-border">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeModel()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
